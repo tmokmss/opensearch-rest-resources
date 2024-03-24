@@ -1,0 +1,444 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "OpenSearchRestResourcesStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "OpenSearchRestResourcesStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "OpenSearchRestResourcesStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "OpenSearchRestResourcesStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ba0b79304e5acc3b04a3922a50b114146806988393b7866a30977ff533a2c3ee.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "OpenSearchRestResourcesStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "OpenSearchRestResourcesStack.assets"
+      ],
+      "metadata": {
+        "/OpenSearchRestResourcesStack/Vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Vpc8378EB38"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1Subnet5C2D37C4"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTable6C95E38E"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTableAssociation97140677"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1DefaultRoute3DA9E72A"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1EIPD7E02669"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1NATGateway4D7517AA"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2Subnet691E08A3"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTable94F7E489"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTableAssociationDD5762D8"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2DefaultRoute97F91067"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1Subnet536B997A"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1RouteTableB2C5B500"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1RouteTableAssociation70C59FA6"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1DefaultRouteBE02A9ED"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2Subnet3788AAA1"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2RouteTableA678073B"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2RouteTableAssociationA89CAD56"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2DefaultRoute060D2087"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIGWD7BA715C"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcVPCGWBF912B6E"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Vpc/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcRestrictDefaultSecurityGroupCustomResourceC73DA2BE"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSecurityGroup48AA5FD6"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/SecurityGroup/from OpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912:443": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSecurityGroupfromOpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912443FFE31955"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/SecurityGroup/from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/MasterUser/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainMasterUserBFAFA7D9"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/SlowSearchLogs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSlowSearchLogs5B35A97A"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/SlowIndexLogs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSlowIndexLogsFE2F1061"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/AppLogs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainAppLogs21698C1B"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/AuditLogs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainAuditLogs608E0FA6"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "installLatestAwsSdk was not specified, and defaults to true. You probably do not want this. Set the global context flag '@aws-cdk/customresources:installLatestAwsSdkDefault' to false to switch this behavior off project-wide, or set the property explicitly to true if you know you need to call APIs that are not in Lambda's built-in SDK version. [ack: @aws-cdk/custom-resources:installLatestAwsSdkNotSpecified]"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe58909497"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162feCustomResourcePolicy2F7224F2"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Domain66AC69E0"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/AccessPolicy/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainAccessPolicyEE735B04"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Domain/AccessPolicy/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainAccessPolicyCustomResourcePolicyE61F1845"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/TestHandler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestHandlerServiceRole954A02F5"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/TestHandler/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestHandlerSecurityGroupF4A19ECA"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/TestHandler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestHandler3EEC6392"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Role1/Resource/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Role19E695EAB"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94ServiceRoleD6AC8912"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94ServiceRoleDefaultPolicy216C71AF"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup61AA8C59"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f9460E7A2E7"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/RoleMapping1/Resource/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RoleMapping19E8BDED7"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/User1/Resource/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "User1A2F34FC8"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Exports/Output{\"Ref\":\"TestHandler3EEC6392\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTestHandler3EEC63921B5ED14E"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/Exports/Output{\"Fn::GetAtt\":[\"TestHandler3EEC6392\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttTestHandler3EEC6392Arn42B9A49B"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/OpenSearchRestResourcesStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "OpenSearchRestResourcesStack"
+    },
+    "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f9ef10371a5dae742e435ad5a965e65037d096741a9f6a0926b2bd3f0554bfbf.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "OpenSearchRestResourcesStack",
+        "OpenSearchRestResourcesIntegTestDefaultTestDeployAssertAA436F18.assets"
+      ],
+      "metadata": {
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/Default/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680"
+          }
+        ],
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/AssertionResults": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssertionResultsAwsApiCallLambdaInvokee049850589ce011a8daad895dd924680"
+          }
+        ],
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SingletonFunction1488541a7b23466481b69b4408076b81Role37ABCE73"
+          }
+        ],
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SingletonFunction1488541a7b23466481b69b4408076b81HandlerCD40AE9F"
+          }
+        ],
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

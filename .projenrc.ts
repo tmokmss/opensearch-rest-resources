@@ -1,8 +1,8 @@
 import { awscdk } from 'projen';
 const project = new awscdk.AwsCdkConstructLibrary({
-  author: 'Masashi Tomooka',
+  author: 'tmokmss',
   authorAddress: 'tomookam@live.jp',
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.1.0', // we don't guarantee it works in 2.1.0, but it should.
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.3.0',
   name: 'opensearch-rest-resources',
@@ -16,9 +16,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
     ignorePatterns: ['example/**/*', 'lambda/**/*', 'test/assets/**/*', 'test/*.snapshot/**/*', '*.d.ts'],
   },
   gitignore: ['*.js', '*.d.ts', '!testq/integ.*.snapshot/**/*', 'test/cdk.out'],
-  devDeps: ['aws-cdk@^2.38.0', 'aws-cdk-lib@^2.38.0', 'constructs@^10.0.5', '@aws-cdk/integ-runner', '@aws-cdk/integ-tests-alpha'],
+  devDeps: ['aws-cdk-lib', 'aws-cdk', 'constructs', '@aws-cdk/integ-runner@^2.133.0-alpha.0', '@aws-cdk/integ-tests-alpha@^2.133.0-alpha.0'],
   peerDependencyOptions: {
     pinnedDevDependency: false,
+  },
+  publishToPypi: {
+    distName: 'opensearch-rest-resources',
+    module: 'opensearch_rest_resources',
   },
   npmProvenance: false,
 });
@@ -27,6 +31,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
 project.projectBuild.compileTask.prependExec('yarn install --frozen-lockfile && yarn build', {
   cwd: 'lambda',
 });
-// Run integ-test
-// project.projectBuild.testTask.exec('yarn integ-runner');
+// Run integ-test. This takes about 1 hour. Good luck.
+project.projectBuild.testTask.exec('yarn integ-runner');
 project.synth();

@@ -56,3 +56,30 @@ const roleMapping = new OpenSearchRoleMapping(this, 'RoleMapping1', {
 });
 roleMapping.node.addDependency(role);
 ```
+
+## Limitation
+Currently this library assumes your OpenSearch domain is configured as:
+
+* [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) is enabled
+* Deployed within a VPC
+* Use the [`Domain`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_opensearchservice.Domain.html) L2 construct
+* The credential for the master user (username and password) is stored in Secret Manager
+* [Domain access policy](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-recommendations) is permissive like below:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "es:ESHttp*",
+      "Resource": "domain-arn/*"
+    }
+  ]
+}
+```
+
+Most of the above follow the current [operational best practices](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/bp.html) of Amazon OpenSearch Service. If you want other configuration supported, please submit [an issue](https://github.com/tmokmss/opensearch-rest-resources/issues).

@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { Duration, CustomResource, RemovalPolicy } from 'aws-cdk-lib';
+import { Duration, CustomResource, RemovalPolicy, Stack } from 'aws-cdk-lib';
 import { IVpc } from 'aws-cdk-lib/aws-ec2';
 import { SingletonFunction, Runtime, RuntimeFamily, Code } from 'aws-cdk-lib/aws-lambda';
 import { Domain } from 'aws-cdk-lib/aws-opensearchservice';
@@ -53,7 +53,7 @@ export class OpenSearchCustomResource extends Construct {
       // We need to create a singleton per VPC
       uuid: `d4706ae7-e0a2-4092-a205-7e2d4fb887d4-${vpc.node.addr}`,
       lambdaPurpose: 'OpenSearchRestCustomResourceHandler',
-      timeout: Duration.minutes(1),
+      timeout: Duration.minutes(3),
       vpc,
     });
 
@@ -63,9 +63,8 @@ export class OpenSearchCustomResource extends Construct {
 
     const masterUserSecret = domain.node.tryFindChild('MasterUser');
     if (!(masterUserSecret instanceof Secret)) {
-      throw new Error(`Cannot find a master user secret for domain ${domain.domainId}!`);
+      throw new Error(`Cannot find a master user secret for domain ${domain.domainId}`);
     }
-
     masterUserSecret.grantRead(handler);
 
     const properties: ResourceProperties = {
@@ -75,11 +74,28 @@ export class OpenSearchCustomResource extends Construct {
       masterUserSecretArn: masterUserSecret.secretArn,
     };
 
-    new CustomResource(this, 'Resource', {
+    const resource = new CustomResource(this, 'Resource', {
       serviceToken: handler.functionArn,
       resourceType: 'Custom::OpenSearchCustomResource',
       properties,
       removalPolicy: props.removalPolicy ?? RemovalPolicy.DESTROY,
     });
+
+    // Access policy is required for master user to call OpenSearch APIs.
+    const domainAccessPolicy = domain.node.tryFindChild('AccessPolicy')?.node.defaultChild;
+    if (domainAccessPolicy == null) {
+      throw new Error(`Cannot find an access policy for domain ${domain.domainId}`);
+    }
+    if (Stack.of(domainAccessPolicy) == Stack.of(resource)) {
+      resource.node.addDependency(domainAccessPolicy);
+    }
+
+    const domainSecurityGroup = domain.node.tryFindChild('SecurityGroup');
+    if (domainSecurityGroup == null) {
+      throw new Error(`Cannot find a security group for domain ${domain.domainId}`);
+    }
+    if (Stack.of(domainSecurityGroup) == Stack.of(resource)) {
+      resource.node.addDependency(domainSecurityGroup);
+    }
   }
 }

@@ -18,6 +18,7 @@
     "package": "npx projen package",
     "package-all": "npx projen package-all",
     "package:js": "npx projen package:js",
+    "package:python": "npx projen package:python",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
@@ -30,19 +31,19 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Masashi Tomooka",
+    "name": "tmokmss",
     "email": "tomookam@live.jp",
     "organization": false
   },
   "devDependencies": {
-    "@aws-cdk/integ-runner": "^2.72.1",
+    "@aws-cdk/integ-runner": "^2.133.0-alpha.0",
     "@aws-cdk/integ-tests-alpha": "^2.133.0-alpha.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
-    "aws-cdk": "^2.38.0",
-    "aws-cdk-lib": "^2.38.0",
+    "aws-cdk": "^2.133.0",
+    "aws-cdk-lib": "^2.133.0",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -50,7 +51,7 @@
     "jest-junit": "^15",
     "jsii": "~5.3.0",
     "jsii-diff": "^1.96.0",
-    "jsii-docgen": "^10.3.24",
+    "jsii-docgen": "^10.3.25",
     "jsii-pacmak": "^1.96.0",
     "jsii-rosetta": "~5.3.0",
     "projen": "^0.80.12",
@@ -118,7 +119,12 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "python": {
+        "distName": "opensearch-rest-resources",
+        "module": "opensearch_rest_resources"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"

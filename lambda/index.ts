@@ -1,8 +1,43 @@
 import { GetSecretValueCommand, SecretsManager } from '@aws-sdk/client-secrets-manager';
 import type { CloudFormationCustomResourceEvent, CloudFormationCustomResourceHandler, Context } from 'aws-lambda';
 import type { ResourceProperties } from '../src/types';
+import { setTimeout } from 'timers/promises';
 
 const sm = new SecretsManager({});
+
+const fetchWithRetry = async (
+  url: string,
+  method: string,
+  headers: Headers,
+  body: string | undefined,
+  successStatus: string[],
+  count = 0
+): Promise<void> => {
+  const res = await fetch(url, {
+    method,
+    headers,
+    body,
+  });
+  if (res.status == 403) {
+    // There is sometimes some delay before domain access policy takes effect,
+    // especially when we call API right after a domain is provisioned.
+    // It seems it usually takes about 15 seconds, so we will retry a few times.
+    if (count > 5) {
+      throw new Error(`Request failed: ${res.status} ${await res.text()}`);
+    }
+    console.log(`Retrying... ${res.status} ${await res.text()}`);
+    await setTimeout(Math.min(count ** 2 * 1000, 30000));
+    return await fetchWithRetry(url, method, headers, body, successStatus, count + 1);
+  }
+  if (!res.ok) {
+    throw new Error(`Request failed: ${res.status} ${await res.text()}`);
+  }
+  const json = await res.json();
+  console.log(json);
+  if (!successStatus.includes(json.status)) {
+    throw new Error(JSON.stringify(json));
+  }
+};
 
 export const handler: CloudFormationCustomResourceHandler = async (event, context) => {
   console.log(JSON.stringify(event));
@@ -26,38 +61,11 @@ export const handler: CloudFormationCustomResourceHandler = async (event, contex
       case 'Create':
       case 'Update': {
         console.log(props.payloadJson);
-        const res = await fetch(`${baseUrl}/${props.restEndpoint}`, {
-          method: 'PUT',
-          headers,
-          body: props.payloadJson,
-        });
-        if (!res.ok) {
-          throw new Error(`Request failed: ${res.status} ${await res.text()}`);
-        }
-        const json = await res.json();
-        console.log(json);
-        if (!['OK', 'CREATED'].includes(json.status)) {
-          throw new Error(JSON.stringify(json));
-        }
+        await fetchWithRetry(`${baseUrl}/${props.restEndpoint}`, 'PUT', headers, props.payloadJson, ['OK', 'CREATED']);
         break;
       }
       case 'Delete': {
-        const res = await fetch(`${baseUrl}/${props.restEndpoint}`, {
-          method: 'DELETE',
-          headers,
-        });
-        if (!res.ok) {
-          throw new Error(`Request failed: ${res.status} ${await res.text()}`);
-        }
-        const json = await res.json();
-        console.log(json);
-        if (json.status == 'NOT_FOUND') {
-          console.log('Seems the resource has already been removed.');
-          break;
-        }
-        if (!['OK'].includes(json.status)) {
-          throw new Error(JSON.stringify(json));
-        }
+        await fetchWithRetry(`${baseUrl}/${props.restEndpoint}`, 'DELETE', headers, undefined, ['OK', 'NOT_FOUND']);
         break;
       }
     }
