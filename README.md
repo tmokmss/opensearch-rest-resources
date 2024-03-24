@@ -26,9 +26,9 @@ import { IVpc } from 'aws-cdk-lib/aws-ec2';
 import { Domain } from 'aws-cdk-lib/aws-opensearchservice';
 import { OpenSearchRole, OpenSearchRoleMapping } from 'opensearch-rest-resources';
 
-declare vpc: IVpc;
-declare role: IRole;
-declare domain: Domain;
+declare const vpc: IVpc;
+declare const role: IRole;
+declare const domain: Domain;
 
 const role = new OpenSearchRole(this, 'Role1', {
     vpc,
