@@ -20,6 +20,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   peerDependencyOptions: {
     pinnedDevDependency: false,
   },
+  npmProvenance: false,
 });
 
 // Bundle custom resource handler Lambda code
