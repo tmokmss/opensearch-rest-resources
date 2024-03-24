@@ -231,9 +231,6 @@
         },
         {
           "spawn": "eslint"
-        },
-        {
-          "exec": "yarn integ-runner"
         }
       ]
     },

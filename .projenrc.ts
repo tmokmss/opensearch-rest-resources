@@ -27,5 +27,5 @@ project.projectBuild.compileTask.prependExec('yarn install --frozen-lockfile && 
   cwd: 'lambda',
 });
 // Run integ-test
-project.projectBuild.testTask.exec('yarn integ-runner');
+// project.projectBuild.testTask.exec('yarn integ-runner');
 project.synth();

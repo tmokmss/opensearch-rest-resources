@@ -1,0 +1,12 @@
+{
+  "name": "lambda",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/credential-provider-node": "^3.540.0",
+    "@opensearch-project/opensearch": "^2.6.0",
+    "@types/aws-lambda": "^8.10.136"
+  }
+}
