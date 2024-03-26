@@ -1,6 +1,6 @@
 # Custom Resources Library for Amazon OpenSearch Service
 
-An AWS CDK construct library to manage OpenSearch resources via CloudFormation custom resource.
+An AWS CDK construct library to manage OpenSearch resources via CloudFormation custom resource. This is especially useful if you use fine-grained access control feature on OpenSearch, where you have to create resources such as role or role mapping via OpenSearch REST API.
 
 ![architecture](./imgs/architecture.png)
 
@@ -64,7 +64,7 @@ Currently this library assumes your OpenSearch domain is configured as:
 * Deployed within a VPC
 * Use the [`Domain`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_opensearchservice.Domain.html) L2 construct
 * The credential for the master user (username and password) is stored in Secret Manager
-* [Domain access policy](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-recommendations) is permissive like below:
+* [Domain access policy](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-recommendations) is permissive enough like below:
 
 ```json
 {

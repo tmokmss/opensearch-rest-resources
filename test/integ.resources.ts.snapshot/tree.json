@@ -716,13 +716,13 @@
                       "version": "2.133.0"
                     }
                   },
-                  "from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443": {
-                    "id": "from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443",
-                    "path": "OpenSearchRestResourcesStack/Domain/SecurityGroup/from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443",
+                  "IngressFromOpenSearchCustomResource": {
+                    "id": "IngressFromOpenSearchCustomResource",
+                    "path": "OpenSearchRestResourcesStack/Domain/SecurityGroup/IngressFromOpenSearchCustomResource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
                       "aws:cdk:cloudformation:props": {
-                        "description": "from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443",
+                        "description": "Ingress from OpenSearch REST custom resource handler",
                         "fromPort": 443,
                         "groupId": {
                           "Fn::GetAtt": [

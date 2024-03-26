@@ -508,10 +508,10 @@
     "ToPort": 443
    }
   },
-  "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E": {
+  "DomainSecurityGroupIngressFromOpenSearchCustomResource3C2E72A9": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "Description": "from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443",
+    "Description": "Ingress from OpenSearch REST custom resource handler",
     "FromPort": 443,
     "GroupId": {
      "Fn::GetAtt": [
@@ -1088,9 +1088,7 @@
    },
    "DependsOn": [
     "DomainAccessPolicyEE735B04",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912443FFE31955",
-    "DomainSecurityGroup48AA5FD6"
+    "DomainSecurityGroupIngressFromOpenSearchCustomResource3C2E72A9"
    ],
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain"
@@ -1278,9 +1276,7 @@
    },
    "DependsOn": [
     "DomainAccessPolicyEE735B04",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912443FFE31955",
-    "DomainSecurityGroup48AA5FD6",
+    "DomainSecurityGroupIngressFromOpenSearchCustomResource3C2E72A9",
     "Role19E695EAB"
    ],
    "UpdateReplacePolicy": "Delete",
@@ -1309,9 +1305,7 @@
    },
    "DependsOn": [
     "DomainAccessPolicyEE735B04",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E",
-    "DomainSecurityGroupfromOpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912443FFE31955",
-    "DomainSecurityGroup48AA5FD6"
+    "DomainSecurityGroupIngressFromOpenSearchCustomResource3C2E72A9"
    ],
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"

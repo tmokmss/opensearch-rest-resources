@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { Duration, CustomResource, RemovalPolicy, Stack } from 'aws-cdk-lib';
-import { IVpc } from 'aws-cdk-lib/aws-ec2';
+import { CfnSecurityGroupIngress, IVpc } from 'aws-cdk-lib/aws-ec2';
 import { SingletonFunction, Runtime, RuntimeFamily, Code } from 'aws-cdk-lib/aws-lambda';
 import { Domain } from 'aws-cdk-lib/aws-opensearchservice';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -50,16 +50,12 @@ export class OpenSearchCustomResource extends Construct {
       runtime: new Runtime('nodejs18.x', RuntimeFamily.NODEJS, { supportsInlineCode: true }),
       code: Code.fromInline(readFileSync(join(__dirname, '../', 'lambda', 'dist', 'index.js')).toString()),
       handler: 'index.handler',
-      // We need to create a singleton per VPC
+      // We need to create a singleton function per VPC
       uuid: `d4706ae7-e0a2-4092-a205-7e2d4fb887d4-${vpc.node.addr}`,
       lambdaPurpose: 'OpenSearchRestCustomResourceHandler',
       timeout: Duration.minutes(3),
       vpc,
     });
-
-    if (vpc != null) {
-      domain.connections.allowDefaultPortFrom(handler);
-    }
 
     const masterUserSecret = domain.node.tryFindChild('MasterUser');
     if (!(masterUserSecret instanceof Secret)) {
@@ -90,12 +86,24 @@ export class OpenSearchCustomResource extends Construct {
       resource.node.addDependency(domainAccessPolicy);
     }
 
-    const domainSecurityGroup = domain.node.tryFindChild('SecurityGroup');
-    if (domainSecurityGroup == null) {
-      throw new Error(`Cannot find a security group for domain ${domain.domainId}`);
-    }
-    if (Stack.of(domainSecurityGroup) == Stack.of(resource)) {
-      resource.node.addDependency(domainSecurityGroup);
+    const domainSecurityGroup = domain.connections.securityGroups[0];
+    const handlerSecurityGroup = handler.connections.securityGroups[0];
+    if (vpc != null && domainSecurityGroup != null && handlerSecurityGroup != null) {
+      const ruleId = 'IngressFromOpenSearchCustomResource';
+      let rule = domainSecurityGroup.node.tryFindChild(ruleId);
+      if (rule == null) {
+        // We create an L1 resource directly here because it is difficult to
+        // retrieve backing ingress rule resource from L2 security group construct
+        rule = new CfnSecurityGroupIngress(domainSecurityGroup, ruleId, {
+          fromPort: 443,
+          toPort: 443,
+          ipProtocol: 'tcp',
+          groupId: domainSecurityGroup.securityGroupId,
+          sourceSecurityGroupId: handlerSecurityGroup.securityGroupId,
+          description: 'Ingress from OpenSearch REST custom resource handler',
+        });
+      }
+      resource.node.addDependency(rule);
     }
   }
 }

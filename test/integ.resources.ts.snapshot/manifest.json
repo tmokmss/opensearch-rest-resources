@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ba0b79304e5acc3b04a3922a50b114146806988393b7866a30977ff533a2c3ee.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ffe3eb1a3d0ccb9edc124dc2251f0f0bdeb144153025527303b6022b281e611b.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -190,10 +190,10 @@
             "data": "DomainSecurityGroupfromOpenSearchRestResourcesStackTestHandlerSecurityGroup4A27F912443FFE31955"
           }
         ],
-        "/OpenSearchRestResourcesStack/Domain/SecurityGroup/from OpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA4:443": [
+        "/OpenSearchRestResourcesStack/Domain/SecurityGroup/IngressFromOpenSearchCustomResource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E"
+            "data": "DomainSecurityGroupIngressFromOpenSearchCustomResource3C2E72A9"
           }
         ],
         "/OpenSearchRestResourcesStack/Domain/MasterUser/Resource": [
@@ -357,6 +357,15 @@
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
+        ],
+        "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainSecurityGroupfromOpenSearchRestResourcesStackOpenSearchRestCustomResourceHandlerd4706ae7e0a24092a2057e2d4fb887d4c8e35097ce732b8fe8a8d95ca1c119b98830288f94SecurityGroup19DF8FA44434740CD7E",
+            "trace": [
+              "!!DESTRUCTIVE_CHANGES: WILL_DESTROY"
+            ]
+          }
         ]
       },
       "displayName": "OpenSearchRestResourcesStack"
@@ -378,7 +387,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f9ef10371a5dae742e435ad5a965e65037d096741a9f6a0926b2bd3f0554bfbf.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/36c9d4f1a21b0e36b67e90511884634bd8b4a715c5320bb3404484458d73d426.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
