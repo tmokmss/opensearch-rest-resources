@@ -23,11 +23,12 @@ Then you can create OpenSearch resources using [`Domain`](https://docs.aws.amazo
 
 ```ts
 import { IVpc } from 'aws-cdk-lib/aws-ec2';
+import { IRole } from 'aws-cdk-lib/aws-iam';
 import { Domain } from 'aws-cdk-lib/aws-opensearchservice';
 import { OpenSearchRole, OpenSearchRoleMapping } from 'opensearch-rest-resources';
 
 declare const vpc: IVpc;
-declare const role: IRole;
+declare const backendRole: IRole;
 declare const domain: Domain;
 
 const role = new OpenSearchRole(this, 'Role1', {
@@ -50,7 +51,7 @@ const roleMapping = new OpenSearchRoleMapping(this, 'RoleMapping1', {
     domain,
     roleName: 'Role1',
     payload: {
-        backendRoles: [role.roleArn],
+        backendRoles: [backendRole.roleArn],
     },
     removalPolicy: RemovalPolicy.RETAIN,
 });
