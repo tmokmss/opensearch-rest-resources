@@ -29,10 +29,13 @@ const fetchWithRetry = async (
     await setTimeout(Math.min(count ** 2 * 1000, 30000));
     return await fetchWithRetry(url, method, headers, body, successStatus, count + 1);
   }
-  if (!res.ok) {
-    throw new Error(`Request failed: ${res.status} ${await res.text()}`);
+  const text = await res.text();
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch (e) {
+    throw new Error(`Request failed: ${res.status} ${text}`);
   }
-  const json = await res.json();
   console.log(json);
   if (!successStatus.includes(json.status)) {
     throw new Error(JSON.stringify(json));
