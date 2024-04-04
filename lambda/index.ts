@@ -18,27 +18,36 @@ const fetchWithRetry = async (
     headers,
     body,
   });
-  if (res.status == 403) {
+  let json: { status: string; message: string } | undefined;
+  try {
+    const text = await res.text();
+    console.log(`${res.status} ${text}`);
+    json = JSON.parse(text);
+  } catch (e) {
+    console.log(e);
+    // Do not throw here. We should handle certain exceptions with retry.
+  }
+
+  if (res.status == 403 || json?.status === 'CONFLICT') {
     // There is sometimes some delay before domain access policy takes effect,
     // especially when we call API right after a domain is provisioned.
     // It seems it usually takes about 15 seconds, so we will retry a few times.
+
+    // There is sometimes a version conflict error when multiple updates are issued in short time.
+    // It should also be recovered with retry.
     if (count > 5) {
-      throw new Error(`Request failed: ${res.status} ${await res.text()}`);
+      throw new Error(`Request failed after ${count} retries.`);
     }
-    console.log(`Retrying... ${res.status} ${await res.text()}`);
+    console.log(`Retrying #${count}... `);
     await setTimeout(Math.min(count ** 2 * 1000, 30000));
     return await fetchWithRetry(url, method, headers, body, successStatus, count + 1);
   }
-  const text = await res.text();
-  let json;
-  try {
-    json = JSON.parse(text);
-  } catch (e) {
-    throw new Error(`Request failed: ${res.status} ${text}`);
+
+  if (json === undefined) {
+    throw new Error(`Response body is not a valid json.`);
   }
-  console.log(json);
   if (!successStatus.includes(json.status)) {
-    throw new Error(JSON.stringify(json));
+    throw new Error(`Request has an invalid status. Valid statuses: ${successStatus.join(',')}`);
   }
 };
 
