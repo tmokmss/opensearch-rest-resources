@@ -63,8 +63,8 @@ Currently this library assumes your OpenSearch domain is configured such that:
 
 * [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) is enabled
 * Use the [`Domain`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_opensearchservice.Domain.html) L2 construct
-* The credential for the master user (username and password) is stored in Secret Manager
-* [Domain access policy](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-recommendations) is permissive enough like below:
+* The master is authenticated with username and password, and the credential is stored in Secret Manager
+* [Domain access policy](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-recommendations) is configured to allow access from the master user
 
 ```json
 {

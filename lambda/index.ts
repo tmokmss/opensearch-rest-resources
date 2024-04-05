@@ -35,11 +35,13 @@ const fetchWithRetry = async (
 
     // There is sometimes a version conflict error when multiple updates are issued in short time.
     // It should also be recovered with retry.
-    if (count > 5) {
+    if (count > 10) {
       throw new Error(`Request failed after ${count} retries.`);
     }
     console.log(`Retrying #${count}... `);
-    await setTimeout(Math.min(count ** 2 * 1000, 30000));
+    const base = count ** 2 * 500;
+    const jitter = Math.floor(Math.random() * base);
+    await setTimeout(Math.min(base + jitter, 10000));
     return await fetchWithRetry(url, method, headers, body, successStatus, count + 1);
   }
 
