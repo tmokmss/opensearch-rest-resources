@@ -5,8 +5,10 @@ import { Domain } from 'aws-cdk-lib/aws-opensearchservice';
 export interface ResourcePropsBase {
   /**
    * The VPC your OpenSearch domain is in.
+   *
+   * @default Assumes your Domain is not deployed within a VPC
    */
-  readonly vpc: IVpc;
+  readonly vpc?: IVpc;
 
   /**
    * The OpenSearch domain you want to create a resource in.

@@ -11,8 +11,10 @@ import { ResourceProperties } from './types';
 export interface OpenSearchCustomResourceProps {
   /**
    * The VPC your OpenSearch domain is in.
+   *
+   * @default Assumes your Domain is not deployed within a VPC
    */
-  readonly vpc: IVpc;
+  readonly vpc?: IVpc;
 
   /**
    * The OpenSearch domain you want to create a resource in.
@@ -51,7 +53,7 @@ export class OpenSearchCustomResource extends Construct {
       code: Code.fromInline(readFileSync(join(__dirname, '../', 'lambda', 'dist', 'index.js')).toString()),
       handler: 'index.handler',
       // We need to create a singleton function per VPC
-      uuid: `d4706ae7-e0a2-4092-a205-7e2d4fb887d4-${vpc.node.addr}`,
+      uuid: `d4706ae7-e0a2-4092-a205-7e2d4fb887d4-${vpc?.node.addr ?? 'no-vpc'}`,
       lambdaPurpose: 'OpenSearchRestCustomResourceHandler',
       timeout: Duration.minutes(3),
       vpc,
@@ -59,7 +61,7 @@ export class OpenSearchCustomResource extends Construct {
 
     const masterUserSecret = domain.node.tryFindChild('MasterUser');
     if (!(masterUserSecret instanceof Secret)) {
-      throw new Error(`Cannot find a master user secret for domain ${domain.domainId}`);
+      throw new Error(`Cannot find a master user secret for domain ${domain.node.path}`);
     }
     masterUserSecret.grantRead(handler);
 
@@ -79,19 +81,29 @@ export class OpenSearchCustomResource extends Construct {
 
     // Access policy is required for master user to call OpenSearch APIs.
     const domainAccessPolicy = domain.node.tryFindChild('AccessPolicy')?.node.defaultChild;
-    if (domainAccessPolicy == null) {
-      throw new Error(`Cannot find an access policy for domain ${domain.domainId}`);
+    if (domainAccessPolicy === undefined) {
+      throw new Error(`Cannot find an access policy for domain ${domain.node.path}`);
     }
     if (Stack.of(domainAccessPolicy) == Stack.of(resource)) {
       resource.node.addDependency(domainAccessPolicy);
     }
 
-    const domainSecurityGroup = domain.connections.securityGroups[0];
-    const handlerSecurityGroup = handler.connections.securityGroups[0];
-    if (vpc != null && domainSecurityGroup != null && handlerSecurityGroup != null) {
+    let isInVpc = false;
+    try {
+      domain.connections;
+      isInVpc = true; // if domain.connections does not throws, it means the domain is in a VPC.
+    } catch (e) {
+    }
+    if (isInVpc && vpc === undefined) {
+      // throw new Error(`It seems your OpenSearch domain is deployed in a VPC. Please set the vpc property for OpenSearch custom resources for domain ${domain.node.path}`);
+    }
+
+    if (vpc !== undefined) {
+      const domainSecurityGroup = domain.connections.securityGroups[0];
+      const handlerSecurityGroup = handler.connections.securityGroups[0];
       const ruleId = 'IngressFromOpenSearchCustomResource';
       let rule = domainSecurityGroup.node.tryFindChild(ruleId);
-      if (rule == null) {
+      if (rule === undefined) {
         // We create an L1 resource directly here because it is difficult to
         // retrieve backing ingress rule resource from L2 security group construct
         rule = new CfnSecurityGroupIngress(domainSecurityGroup, ruleId, {

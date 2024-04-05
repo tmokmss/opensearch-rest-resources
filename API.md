@@ -547,8 +547,8 @@ const openSearchCustomResourceProps: OpenSearchCustomResourceProps = { ... }
 | <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.domain">domain</a></code> | <code>aws-cdk-lib.aws_opensearchservice.Domain</code> | The OpenSearch domain you want to create a resource in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.payloadJson">payloadJson</a></code> | <code>string</code> | A payload in JSON string to send with a request on create/update event. |
 | <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.restEndpoint">restEndpoint</a></code> | <code>string</code> | A REST endpoint to call from the custom resource handler. |
-| <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | Policy to apply when the resource is removed from the stack. |
+| <code><a href="#opensearch-rest-resources.OpenSearchCustomResourceProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 
 ---
 
@@ -597,18 +597,6 @@ _plugins/_security/api/roles/roleName
 ```
 
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchCustomResourceProps.property.vpc"></a>
-
-```typescript
-public readonly vpc: IVpc;
-```
-
-- *Type:* aws-cdk-lib.aws_ec2.IVpc
-
-The VPC your OpenSearch domain is in.
-
----
-
 ##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="opensearch-rest-resources.OpenSearchCustomResourceProps.property.removalPolicy"></a>
 
 ```typescript
@@ -619,6 +607,19 @@ public readonly removalPolicy: RemovalPolicy;
 - *Default:* RemovalPolicy.DESTROY
 
 Policy to apply when the resource is removed from the stack.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchCustomResourceProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* Assumes your Domain is not deployed within a VPC
+
+The VPC your OpenSearch domain is in.
 
 ---
 
@@ -637,8 +638,8 @@ const openSearchRoleMappingProps: OpenSearchRoleMappingProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.domain">domain</a></code> | <code>aws-cdk-lib.aws_opensearchservice.Domain</code> | The OpenSearch domain you want to create a resource in. |
-| <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | Policy to apply when the resource is removed from the stack. |
+| <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.payload">payload</a></code> | <code><a href="#opensearch-rest-resources.RoleMappingPayload">RoleMappingPayload</a></code> | See https://opensearch.org/docs/latest/security/access-control/api/#create-role-mapping for the details. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleMappingProps.property.roleName">roleName</a></code> | <code>string</code> | The role you create a role mapping for. |
 
@@ -656,18 +657,6 @@ The OpenSearch domain you want to create a resource in.
 
 ---
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchRoleMappingProps.property.vpc"></a>
-
-```typescript
-public readonly vpc: IVpc;
-```
-
-- *Type:* aws-cdk-lib.aws_ec2.IVpc
-
-The VPC your OpenSearch domain is in.
-
----
-
 ##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="opensearch-rest-resources.OpenSearchRoleMappingProps.property.removalPolicy"></a>
 
 ```typescript
@@ -678,6 +667,19 @@ public readonly removalPolicy: RemovalPolicy;
 - *Default:* RemovalPolicy.DESTROY
 
 Policy to apply when the resource is removed from the stack.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchRoleMappingProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* Assumes your Domain is not deployed within a VPC
+
+The VPC your OpenSearch domain is in.
 
 ---
 
@@ -722,8 +724,8 @@ const openSearchRoleProps: OpenSearchRoleProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.domain">domain</a></code> | <code>aws-cdk-lib.aws_opensearchservice.Domain</code> | The OpenSearch domain you want to create a resource in. |
-| <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | Policy to apply when the resource is removed from the stack. |
+| <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.payload">payload</a></code> | <code><a href="#opensearch-rest-resources.RolePayload">RolePayload</a></code> | See https://opensearch.org/docs/latest/security/access-control/api/#create-role for the details. |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleProps.property.roleName">roleName</a></code> | <code>string</code> | The name of this role. |
 
@@ -741,18 +743,6 @@ The OpenSearch domain you want to create a resource in.
 
 ---
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchRoleProps.property.vpc"></a>
-
-```typescript
-public readonly vpc: IVpc;
-```
-
-- *Type:* aws-cdk-lib.aws_ec2.IVpc
-
-The VPC your OpenSearch domain is in.
-
----
-
 ##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="opensearch-rest-resources.OpenSearchRoleProps.property.removalPolicy"></a>
 
 ```typescript
@@ -763,6 +753,19 @@ public readonly removalPolicy: RemovalPolicy;
 - *Default:* RemovalPolicy.DESTROY
 
 Policy to apply when the resource is removed from the stack.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchRoleProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* Assumes your Domain is not deployed within a VPC
+
+The VPC your OpenSearch domain is in.
 
 ---
 
@@ -805,8 +808,8 @@ const openSearchUserProps: OpenSearchUserProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.domain">domain</a></code> | <code>aws-cdk-lib.aws_opensearchservice.Domain</code> | The OpenSearch domain you want to create a resource in. |
-| <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | Policy to apply when the resource is removed from the stack. |
+| <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.payload">payload</a></code> | <code><a href="#opensearch-rest-resources.UserPayload">UserPayload</a></code> | See https://opensearch.org/docs/latest/security/access-control/api/#create-user for the details. |
 | <code><a href="#opensearch-rest-resources.OpenSearchUserProps.property.userName">userName</a></code> | <code>string</code> | The name of this user. |
 
@@ -824,18 +827,6 @@ The OpenSearch domain you want to create a resource in.
 
 ---
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchUserProps.property.vpc"></a>
-
-```typescript
-public readonly vpc: IVpc;
-```
-
-- *Type:* aws-cdk-lib.aws_ec2.IVpc
-
-The VPC your OpenSearch domain is in.
-
----
-
 ##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="opensearch-rest-resources.OpenSearchUserProps.property.removalPolicy"></a>
 
 ```typescript
@@ -846,6 +837,19 @@ public readonly removalPolicy: RemovalPolicy;
 - *Default:* RemovalPolicy.DESTROY
 
 Policy to apply when the resource is removed from the stack.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="opensearch-rest-resources.OpenSearchUserProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* Assumes your Domain is not deployed within a VPC
+
+The VPC your OpenSearch domain is in.
 
 ---
 
@@ -888,8 +892,8 @@ const resourcePropsBase: ResourcePropsBase = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.ResourcePropsBase.property.domain">domain</a></code> | <code>aws-cdk-lib.aws_opensearchservice.Domain</code> | The OpenSearch domain you want to create a resource in. |
-| <code><a href="#opensearch-rest-resources.ResourcePropsBase.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 | <code><a href="#opensearch-rest-resources.ResourcePropsBase.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | Policy to apply when the resource is removed from the stack. |
+| <code><a href="#opensearch-rest-resources.ResourcePropsBase.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC your OpenSearch domain is in. |
 
 ---
 
@@ -905,18 +909,6 @@ The OpenSearch domain you want to create a resource in.
 
 ---
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="opensearch-rest-resources.ResourcePropsBase.property.vpc"></a>
-
-```typescript
-public readonly vpc: IVpc;
-```
-
-- *Type:* aws-cdk-lib.aws_ec2.IVpc
-
-The VPC your OpenSearch domain is in.
-
----
-
 ##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="opensearch-rest-resources.ResourcePropsBase.property.removalPolicy"></a>
 
 ```typescript
@@ -927,6 +919,19 @@ public readonly removalPolicy: RemovalPolicy;
 - *Default:* RemovalPolicy.DESTROY
 
 Policy to apply when the resource is removed from the stack.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="opensearch-rest-resources.ResourcePropsBase.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* Assumes your Domain is not deployed within a VPC
+
+The VPC your OpenSearch domain is in.
 
 ---
 
