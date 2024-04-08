@@ -28,7 +28,7 @@ const fetchWithRetry = async (
     // Do not throw here. We should handle certain exceptions with retry.
   }
 
-  if (res.status == 403 || json?.status === 'CONFLICT') {
+  if (res.status == 403 || res.status == 401 || json?.status === 'CONFLICT') {
     // There is sometimes some delay before domain access policy takes effect,
     // especially when we call API right after a domain is provisioned.
     // It seems it usually takes about 15 seconds, so we will retry a few times.
