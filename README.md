@@ -13,7 +13,7 @@ You can manage any other REST resources via our low level API (`ResourceBase` cl
 
 ## Usage
 
-Instal it via npm:
+Install it via npm:
 
 ```sh
 npm install opensearch-rest-resources
