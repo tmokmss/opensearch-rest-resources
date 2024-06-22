@@ -22,15 +22,22 @@ export interface RoleMappingPayload {
 }
 
 export class OpenSearchRoleMapping extends Construct {
+  /**
+   * The name of the OpenSearch role this mapping is created for.
+   */
+  public readonly roleName: string;
+
   constructor(scope: Construct, id: string, props: OpenSearchRoleMappingProps) {
     super(scope, id);
 
     const { roleName, payload, ...other } = props;
 
-    new OpenSearchCustomResource(this, 'Resource', {
+    const resource = new OpenSearchCustomResource(this, 'Resource', {
       ...other,
-      restEndpoint: `_plugins/_security/api/rolesmapping/${props.roleName}`,
+      restEndpoint: `_plugins/_security/api/rolesmapping/${roleName}`,
       payloadJson: JSON.stringify(recursiveFromCamelToSnake(payload)),
     });
+
+    this.roleName = resource.getStringAfterResourceCreation(roleName);
   }
 }

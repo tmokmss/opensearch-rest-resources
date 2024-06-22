@@ -37,15 +37,22 @@ export interface TenantPermissions {
 }
 
 export class OpenSearchRole extends Construct {
+  /**
+   * The name of this role.
+   */
+  public readonly roleName: string;
+
   constructor(scope: Construct, id: string, props: OpenSearchRoleProps) {
     super(scope, id);
 
     const { roleName, payload, ...other } = props;
 
-    new OpenSearchCustomResource(this, 'Resource', {
+    const resource = new OpenSearchCustomResource(this, 'Resource', {
       ...other,
-      restEndpoint: `_plugins/_security/api/roles/${props.roleName}`,
+      restEndpoint: `_plugins/_security/api/roles/${roleName}`,
       payloadJson: JSON.stringify(recursiveFromCamelToSnake(payload)),
     });
+
+    this.roleName = resource.getStringAfterResourceCreation(roleName);
   }
 }

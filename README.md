@@ -49,13 +49,12 @@ const role = new OpenSearchRole(this, 'Role1', {
 const roleMapping = new OpenSearchRoleMapping(this, 'RoleMapping1', {
     vpc,
     domain,
-    roleName: 'Role1',
+    roleName: role.roleName,
     payload: {
         backendRoles: [backendRole.roleArn],
     },
     removalPolicy: RemovalPolicy.RETAIN,
 });
-roleMapping.node.addDependency(role);
 ```
 
 ## Limitation

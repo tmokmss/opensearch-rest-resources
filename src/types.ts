@@ -25,4 +25,12 @@ export type ResourceProperties = {
    * A payload in JSON string to send a request on create/update event.
    */
   payloadJson: string;
+
+  /**
+   * The version for schema (used for this construct internally).
+   *
+   * We add this to forcefully update existing custom resources when updating this library.
+   * This is used to avoid breaking behavior for existing users e.g. when we add attributes for a custom resource.
+   */
+  schemaVersion: 'v1';
 };

@@ -28,7 +28,7 @@ const camelToSnakeCase = (str: string) => str.replace(/[A-Z]/g, (c) => `_${c.toL
 type Exclude = { [key: string]: Exclude | true };
 
 /**
- * jsii requires property keys to be in camel case in TypeScript,
+ * Context: jsii requires property keys of an object to be camel-cased,
  * while OpenSearch uses snake case for a REST API request payload.
  *
  * This is a utility function to convert an object with camel-cased keys to snake-cased.

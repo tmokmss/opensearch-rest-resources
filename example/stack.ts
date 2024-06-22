@@ -90,7 +90,7 @@ export class OpenSearchTestStack extends Stack {
     domain.connections.allowDefaultPortFrom(testHandler);
     this.testHandler = testHandler;
 
-    // Never remove all of them! VPC Lambda requires 20 minutes to delete itself.
+    // Never remove all of them when testing! VPC Lambda requires 20 minutes to delete itself.
     const role = new OpenSearchRole(this, 'Role1', {
       vpc,
       domain,
@@ -104,18 +104,17 @@ export class OpenSearchTestStack extends Stack {
           },
         ],
       },
-      removalPolicy: RemovalPolicy.RETAIN,
+      removalPolicy: RemovalPolicy.RETAIN_ON_UPDATE_OR_DELETE,
     });
 
-    const roleMapping = new OpenSearchRoleMapping(this, 'RoleMapping1', {
+    new OpenSearchRoleMapping(this, 'RoleMapping1', {
       vpc,
       domain,
-      roleName: 'Role1',
+      roleName: role.roleName,
       payload: {
         backendRoles: [testHandler.role!.roleArn],
       },
     });
-    roleMapping.node.addDependency(role);
 
     new OpenSearchUser(this, 'User1', {
       vpc,

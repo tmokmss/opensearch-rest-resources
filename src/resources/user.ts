@@ -23,6 +23,11 @@ export interface UserPayload {
 }
 
 export class OpenSearchUser extends Construct {
+  /**
+   * The name of this user.
+   */
+  public readonly userName: string;
+
   constructor(scope: Construct, id: string, props: OpenSearchUserProps) {
     super(scope, id);
 
@@ -31,10 +36,12 @@ export class OpenSearchUser extends Construct {
     // we won't convert casing for attributes
     const exclude = { attributes: true } as const;
 
-    new OpenSearchCustomResource(this, 'Resource', {
+    const resource = new OpenSearchCustomResource(this, 'Resource', {
       ...other,
       restEndpoint: `_plugins/_security/api/internalusers/${userName}`,
       payloadJson: JSON.stringify(recursiveFromCamelToSnake(payload, exclude)),
     });
+
+    this.userName = resource.getStringAfterResourceCreation(userName);
   }
 }

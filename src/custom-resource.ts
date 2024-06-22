@@ -43,6 +43,8 @@ export interface OpenSearchCustomResourceProps {
 }
 
 export class OpenSearchCustomResource extends Construct {
+  private readonly resource: CustomResource;
+
   constructor(scope: Construct, id: string, props: OpenSearchCustomResourceProps) {
     super(scope, id);
 
@@ -70,6 +72,7 @@ export class OpenSearchCustomResource extends Construct {
       restEndpoint: props.restEndpoint,
       payloadJson: props.payloadJson,
       masterUserSecretArn: masterUserSecret.secretArn,
+      schemaVersion: 'v1',
     };
 
     const resource = new CustomResource(this, 'Resource', {
@@ -78,6 +81,7 @@ export class OpenSearchCustomResource extends Construct {
       properties,
       removalPolicy: props.removalPolicy ?? RemovalPolicy.DESTROY,
     });
+    this.resource = resource;
 
     // Access policy is required for master user to call OpenSearch APIs.
     const domainAccessPolicy = domain.node.tryFindChild('AccessPolicy')?.node.defaultChild;
@@ -92,8 +96,7 @@ export class OpenSearchCustomResource extends Construct {
     try {
       domain.connections;
       isInVpc = true; // if domain.connections does not throws, it means the domain is in a VPC.
-    } catch (e) {
-    }
+    } catch (e) {}
     if (isInVpc && vpc === undefined) {
       // throw new Error(`It seems your OpenSearch domain is deployed in a VPC. Please set the vpc property for OpenSearch custom resources for domain ${domain.node.path}`);
     }
@@ -117,5 +120,15 @@ export class OpenSearchCustomResource extends Construct {
       }
       resource.node.addDependency(rule);
     }
+  }
+
+  /**
+   * This function converts a string to a token that has an implicit dependency between
+   * this resource and a consumer of the string.
+   * @param str any string
+   * @returns `str` with an implicit dependency
+   */
+  public getStringAfterResourceCreation(str: string) {
+    return `${this.resource.getAttString('Empty')}${str}`;
   }
 }

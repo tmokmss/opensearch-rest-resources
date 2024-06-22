@@ -43,6 +43,7 @@ new OpenSearchCustomResource(scope: Construct, id: string, props: OpenSearchCust
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchCustomResource.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#opensearch-rest-resources.OpenSearchCustomResource.getStringAfterResourceCreation">getStringAfterResourceCreation</a></code> | This function converts a string to a token that has an implicit dependency between this resource and a consumer of the string. |
 
 ---
 
@@ -53,6 +54,22 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `getStringAfterResourceCreation` <a name="getStringAfterResourceCreation" id="opensearch-rest-resources.OpenSearchCustomResource.getStringAfterResourceCreation"></a>
+
+```typescript
+public getStringAfterResourceCreation(str: string): string
+```
+
+This function converts a string to a token that has an implicit dependency between this resource and a consumer of the string.
+
+###### `str`<sup>Required</sup> <a name="str" id="opensearch-rest-resources.OpenSearchCustomResource.getStringAfterResourceCreation.parameter.str"></a>
+
+- *Type:* string
+
+any string.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -212,6 +229,7 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchRole.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#opensearch-rest-resources.OpenSearchRole.property.roleName">roleName</a></code> | <code>string</code> | The name of this role. |
 
 ---
 
@@ -224,6 +242,18 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `roleName`<sup>Required</sup> <a name="roleName" id="opensearch-rest-resources.OpenSearchRole.property.roleName"></a>
+
+```typescript
+public readonly roleName: string;
+```
+
+- *Type:* string
+
+The name of this role.
 
 ---
 
@@ -325,6 +355,7 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchRoleMapping.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#opensearch-rest-resources.OpenSearchRoleMapping.property.roleName">roleName</a></code> | <code>string</code> | The name of the OpenSearch role this mapping is created for. |
 
 ---
 
@@ -337,6 +368,18 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `roleName`<sup>Required</sup> <a name="roleName" id="opensearch-rest-resources.OpenSearchRoleMapping.property.roleName"></a>
+
+```typescript
+public readonly roleName: string;
+```
+
+- *Type:* string
+
+The name of the OpenSearch role this mapping is created for.
 
 ---
 
@@ -438,6 +481,7 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#opensearch-rest-resources.OpenSearchUser.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#opensearch-rest-resources.OpenSearchUser.property.userName">userName</a></code> | <code>string</code> | The name of this user. |
 
 ---
 
@@ -450,6 +494,18 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `userName`<sup>Required</sup> <a name="userName" id="opensearch-rest-resources.OpenSearchUser.property.userName"></a>
+
+```typescript
+public readonly userName: string;
+```
+
+- *Type:* string
+
+The name of this user.
 
 ---
 

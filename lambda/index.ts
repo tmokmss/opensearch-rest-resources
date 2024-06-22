@@ -106,7 +106,7 @@ const sendStatus = async (
     RequestId: event.RequestId,
     LogicalResourceId: event.LogicalResourceId,
     NoEcho: false,
-    Data: {},
+    Data: { Empty: '' }, // To allow users to create an implicit dependency, it returns an empty string.
   });
 
   const res = await fetch(event.ResponseURL, {
