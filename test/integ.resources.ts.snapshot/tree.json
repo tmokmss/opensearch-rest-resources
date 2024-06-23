@@ -1815,14 +1815,6 @@
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.133.0"
                 }
-              },
-              "Output{\"Fn::GetAtt\":[\"TestHandler3EEC6392\",\"Arn\"]}": {
-                "id": "Output{\"Fn::GetAtt\":[\"TestHandler3EEC6392\",\"Arn\"]}",
-                "path": "OpenSearchRestResourcesStack/Exports/Output{\"Fn::GetAtt\":[\"TestHandler3EEC6392\",\"Arn\"]}",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.133.0"
-                }
               }
             },
             "constructInfo": {
@@ -1872,17 +1864,17 @@
                 "id": "DeployAssert",
                 "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert",
                 "children": {
-                  "AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680": {
-                    "id": "AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680",
-                    "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680",
+                  "LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1": {
+                    "id": "LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1",
+                    "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1",
                     "children": {
                       "SdkProvider": {
                         "id": "SdkProvider",
-                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/SdkProvider",
+                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/SdkProvider",
                         "children": {
                           "AssertionsProvider": {
                             "id": "AssertionsProvider",
-                            "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/SdkProvider/AssertionsProvider",
+                            "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/SdkProvider/AssertionsProvider",
                             "constructInfo": {
                               "fqn": "constructs.Construct",
                               "version": "10.3.0"
@@ -1896,11 +1888,11 @@
                       },
                       "Default": {
                         "id": "Default",
-                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/Default",
+                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/Default",
                         "children": {
                           "Default": {
                             "id": "Default",
-                            "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/Default/Default",
+                            "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/Default/Default",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.CfnResource",
                               "version": "2.133.0"
@@ -1912,9 +1904,17 @@
                           "version": "2.133.0"
                         }
                       },
+                      "Invoke": {
+                        "id": "Invoke",
+                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/Invoke",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.133.0"
+                        }
+                      },
                       "AssertionResults": {
                         "id": "AssertionResults",
-                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680/AssertionResults",
+                        "path": "OpenSearchRestResourcesIntegTest/DefaultTest/DeployAssert/LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1/AssertionResults",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnOutput",
                           "version": "2.133.0"
@@ -1922,7 +1922,7 @@
                       }
                     },
                     "constructInfo": {
-                      "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
+                      "fqn": "@aws-cdk/integ-tests-alpha.LambdaInvokeFunction",
                       "version": "2.133.0-alpha.0"
                     }
                   },

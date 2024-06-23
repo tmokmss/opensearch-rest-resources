@@ -1,7 +1,7 @@
 {
  "Resources": {
-  "AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680": {
-   "Type": "Custom::DeployAssert@SdkCallLambdaInvoke",
+  "LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1": {
+   "Type": "Custom::DeployAssert@SdkCallLambdainvoke",
    "Properties": {
     "ServiceToken": {
      "Fn::GetAtt": [
@@ -10,7 +10,7 @@
      ]
     },
     "service": "Lambda",
-    "api": "Invoke",
+    "api": "invoke",
     "expected": "{\"$ObjectLike\":{\"StatusCode\":200}}",
     "parameters": {
      "FunctionName": {
@@ -27,10 +27,25 @@
      }
     },
     "flattenResponse": "false",
-    "salt": "1719035849476"
+    "salt": "1719080822231"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
+  },
+  "LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1InvokeC5D4A4D4": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::ImportValue": "OpenSearchRestResourcesStack:ExportsOutputRefTestHandler3EEC63921B5ED14E"
+    },
+    "Principal": {
+     "Fn::GetAtt": [
+      "SingletonFunction1488541a7b23466481b69b4408076b81Role37ABCE73",
+      "Arn"
+     ]
+    }
+   }
   },
   "SingletonFunction1488541a7b23466481b69b4408076b81Role37ABCE73": {
    "Type": "AWS::IAM::Role",
@@ -68,13 +83,33 @@
          ]
         },
         {
-         "Effect": "Allow",
          "Action": [
           "lambda:InvokeFunction"
          ],
+         "Effect": "Allow",
          "Resource": [
           {
-           "Fn::ImportValue": "OpenSearchRestResourcesStack:ExportsOutputFnGetAttTestHandler3EEC6392Arn42B9A49B"
+           "Fn::Join": [
+            "",
+            [
+             "arn:",
+             {
+              "Ref": "AWS::Partition"
+             },
+             ":lambda:",
+             {
+              "Ref": "AWS::Region"
+             },
+             ":",
+             {
+              "Ref": "AWS::AccountId"
+             },
+             ":function:",
+             {
+              "Fn::ImportValue": "OpenSearchRestResourcesStack:ExportsOutputRefTestHandler3EEC63921B5ED14E"
+             }
+            ]
+           ]
           }
          ]
         }
@@ -106,10 +141,10 @@
   }
  },
  "Outputs": {
-  "AssertionResultsAwsApiCallLambdaInvokee049850589ce011a8daad895dd924680": {
+  "AssertionResultsLambdaInvokea77f64222a12d5eb00fd5fdb480e60b1": {
    "Value": {
     "Fn::GetAtt": [
-     "AwsApiCallLambdaInvokee049850589ce011a8daad895dd924680",
+     "LambdaInvokea77f64222a12d5eb00fd5fdb480e60b1",
      "assertion"
     ]
    }

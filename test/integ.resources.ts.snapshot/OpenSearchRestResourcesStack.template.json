@@ -1335,17 +1335,6 @@
    "Export": {
     "Name": "OpenSearchRestResourcesStack:ExportsOutputRefTestHandler3EEC63921B5ED14E"
    }
-  },
-  "ExportsOutputFnGetAttTestHandler3EEC6392Arn42B9A49B": {
-   "Value": {
-    "Fn::GetAtt": [
-     "TestHandler3EEC6392",
-     "Arn"
-    ]
-   },
-   "Export": {
-    "Name": "OpenSearchRestResourcesStack:ExportsOutputFnGetAttTestHandler3EEC6392Arn42B9A49B"
-   }
   }
  },
  "Parameters": {

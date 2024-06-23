@@ -11,13 +11,8 @@ const integ = new IntegTest(app, 'OpenSearchRestResourcesIntegTest', {
   diffAssets: true,
 });
 
-const assertion = integ.assertions.awsApiCall('Lambda', 'Invoke', {
-  FunctionName: stack.testHandler.functionName,
+const assertion = integ.assertions.invokeFunction({
+  functionName: stack.testHandler.functionName,
 });
 // https://docs.aws.amazon.com/lambda/latest/api/API_Invoke.html#API_Invoke_ResponseElements
 assertion.expect(ExpectedResult.objectLike({ StatusCode: 200 }));
-assertion.provider.addToRolePolicy({
-  Effect: 'Allow',
-  Action: ['lambda:InvokeFunction'],
-  Resource: [stack.testHandler.functionArn],
-});
