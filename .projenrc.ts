@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'tomookam@live.jp',
   cdkVersion: '2.1.0', // we don't guarantee it works in 2.1.0, but it should.
   defaultReleaseBranch: 'main',
-  jsiiVersion: '~5.3.0',
+  jsiiVersion: '~5.8.0',
   name: 'opensearch-rest-resources',
   projenrcTs: true,
   license: 'MIT',
