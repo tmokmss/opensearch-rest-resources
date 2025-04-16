@@ -36,8 +36,8 @@
     "organization": false
   },
   "devDependencies": {
-    "@aws-cdk/integ-runner": "^2.133.0-alpha.0",
-    "@aws-cdk/integ-tests-alpha": "^2.133.0-alpha.0",
+    "@aws-cdk/integ-runner": "^2.186.2",
+    "@aws-cdk/integ-tests-alpha": "^2.189.1-alpha.0",
     "@stylistic/eslint-plugin": "^2",
     "@types/jest": "^29.5.14",
     "@types/node": "^18",
