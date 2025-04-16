@@ -1679,7 +1679,7 @@
                         "Arn"
                       ]
                     },
-                    "runtime": "nodejs18.x",
+                    "runtime": "nodejs22.x",
                     "timeout": 180,
                     "vpcConfig": {
                       "subnetIds": [
