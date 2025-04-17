@@ -2,7 +2,11 @@ import { ExpectedResult, IntegTest } from '@aws-cdk/integ-tests-alpha';
 import { App } from 'aws-cdk-lib';
 import { OpenSearchTestStack } from '../example/stack';
 
-const app = new App();
+const app = new App({
+  context: {
+    '@aws-cdk/custom-resources:logApiResponseDataPropertyTrueDefault': false,
+  },
+});
 
 const stack = new OpenSearchTestStack(app, 'OpenSearchRestResourcesStack');
 

@@ -51,7 +51,7 @@ export class OpenSearchCustomResource extends Construct {
     const { vpc, domain } = props;
 
     const handler = new SingletonFunction(this, 'CustomResourceHandler', {
-      runtime: new Runtime('nodejs18.x', RuntimeFamily.NODEJS, { supportsInlineCode: true }),
+      runtime: new Runtime('nodejs22.x', RuntimeFamily.NODEJS, { supportsInlineCode: true }),
       code: Code.fromInline(readFileSync(join(__dirname, '../', 'lambda', 'dist', 'index.js')).toString()),
       handler: 'index.handler',
       // We need to create a singleton function per VPC
