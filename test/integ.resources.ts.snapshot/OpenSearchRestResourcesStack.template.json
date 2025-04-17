@@ -622,7 +622,7 @@
          "Arn"
         ]
        },
-       "\\\"]}],\\\"Version\\\":\\\"2012-10-17\\\"}\"},\"physicalResourceId\":{\"id\":\"ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"},\"logApiResponseData\":true}"
+       "\\\"]}],\\\"Version\\\":\\\"2012-10-17\\\"}\"},\"physicalResourceId\":{\"id\":\"ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"}}"
       ]
      ]
     },
@@ -658,11 +658,11 @@
          "Arn"
         ]
        },
-       "\\\"]}],\\\"Version\\\":\\\"2012-10-17\\\"}\"},\"physicalResourceId\":{\"id\":\"ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"},\"logApiResponseData\":true}"
+       "\\\"]}],\\\"Version\\\":\\\"2012-10-17\\\"}\"},\"physicalResourceId\":{\"id\":\"ESLogGroupPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"}}"
       ]
      ]
     },
-    "Delete": "{\"service\":\"CloudWatchLogs\",\"action\":\"deleteResourcePolicy\",\"parameters\":{\"policyName\":\"ESLogPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"},\"ignoreErrorCodesMatching\":\"ResourceNotFoundException\",\"logApiResponseData\":true}",
+    "Delete": "{\"service\":\"CloudWatchLogs\",\"action\":\"deleteResourcePolicy\",\"parameters\":{\"policyName\":\"ESLogPolicyc863b05dd93583f2ecb995b6da736699fcd77162fe\"},\"ignoreErrorCodesMatching\":\"ResourceNotFoundException\"}",
     "InstallLatestAwsSdk": "false"
    },
    "DependsOn": [
@@ -831,7 +831,7 @@
        {
         "Ref": "Domain66AC69E0"
        },
-       "AccessPolicy\"},\"logApiResponseData\":true}"
+       "AccessPolicy\"}}"
       ]
      ]
     },
@@ -854,7 +854,7 @@
        {
         "Ref": "Domain66AC69E0"
        },
-       "AccessPolicy\"},\"logApiResponseData\":true}"
+       "AccessPolicy\"}}"
       ]
      ]
     },
